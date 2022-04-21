@@ -1,19 +1,32 @@
 require("dotenv").config(); 
 
 const express = require("express");
-const app = express();
 const session = require("express-session");
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const YahooStrategy = require("passport-yahoo-oauth").Strategy;
 const authConfig = require("./authconfig");
 const methodOverride = require("method-override");
+const mongoose = require("mongoose");
+const User = require("./models/user/user");
 
 // require routes
 const indexRoutes = require("./routes/index");
 const authRoutes = require("./routes/auth/auth");
 
+const app = express();
 
+//connect to the database
+mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.bpxhw.mongodb.net/${process.env.DATABASE}?retryWrites=true&w=majority`, {
+    useNewUrlParser: true, 
+    useUnifiedTopology: true
+});
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', () => {
+    console.log('connection successfull!!!!!');
+});
 
 
 // app.engine("ejs", engine);
@@ -38,32 +51,34 @@ passport.use(new GoogleStrategy({
     callbackURL: authConfig.googleAuth.callbackURL
 },
 function(accessToken, refreshToken, profile, done){
-    return done(null, profile);
-    // process.nextTick(function(){
-    //     User.findOne({'googleUser.id': profile.id}, function(err, user){
-    //         if(err){
-    //             console.log(`googleAuth ${err}`);
-    //             return done(err)
-    //         }
-    //         if(user){
-    //             return done(null, user);
-    //         }else {
-    //             const newUser = new User();
-    //             newUser.google.id = profile.id;
-    //             newUser.google.token = accessToken;
-    //             newUser.google.email = profile.emails[0].value;
-    //             newUser.google.fullName = profile.displayName;
-    //             newUser.google.firstName = profile.name.givenName;
-    //             newUser.google.lastNmae = profile.name.familyName;
+    console.log(profile);
+   
+    process.nextTick(function(){
+        User.findOne({'googleUser.id': profile.id}, function(err, user){
+            if(err){
+                console.log(`googleAuth ${err}`);
+                return done(err)
+            }
+            if(user){
+                return done(null, user);
+            }else {
+                const newUser = new User();
+                newUser.googleUser.id = profile.id;
+                newUser.googleUser.token = accessToken;
+                newUser.googleUser.email = profile.emails[0].value;
+                newUser.googleUser.fullName = profile.displayName;
+                newUser.googleUser.firstName = profile.name.givenName;
+                newUser.googleUser.lastName = profile.name.familyName;
 
-    //             newUser.save(function(err) {
-    //                 if(err) throw err;
-    //                 return done(null, newUser);
-    //             });
-    //             console.log(profile);
-    //         }
-    //     })
-    // })
+                newUser.save(function(err) {
+                    if(err) throw err;
+                    return done(null, newUser);
+                });
+                console.log(profile);
+            }
+        })
+    })
+    // return done(null, profile);
 }));
 
 // passport.use(new YahooStrategy({

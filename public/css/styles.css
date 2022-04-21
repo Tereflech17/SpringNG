@@ -20,9 +20,17 @@ body {
 	color: #075c31;
 }
 
+/* padding styles */
+.pad-right-min {
+	padding-right: 20px;
+}
 /* text alignment styles */
 .c-text {
     text-align: center;
+}
+
+.lt-text {
+	text-align: left;
 }
 
 .v-divider {
@@ -40,6 +48,10 @@ body {
 
 .u-mb-big {
     margin-bottom: 50px;
+}
+
+.u-mb-lg  {
+	margin-bottom: 5rem;
 }
 
 .u-mt-big {
@@ -257,15 +269,17 @@ body {
 	letter-spacing: 2px;
 }
 
+.footer-text,
 .footer-copyright {
 	border-top: 1px solid #777;
 	padding-top: 20px;
 	width: 80%;
+}
+
+.footer-copyright {
 	float: right;
 
 }
-
-
 
 
 /*  hero design */
@@ -326,7 +340,6 @@ body {
 }
 
 .hero-content h1 {
-    
 	font-size: 65px;
 	font-weight: 400;
 	letter-spacing: -3.11px;
@@ -334,6 +347,7 @@ body {
 	margin-bottom: 15px;
     /* color: #fff; */
 }
+
 @media only screen and (min-width: 768px) {
 	.hero-content h1 {
 		font-size: 50px;
@@ -424,9 +438,8 @@ body {
 }
 
 .section-team {
-	
-	/* background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)); */
-	background-color: #075c31;
+	/* background-color: #075c31; */
+	background: linear-gradient(220.55deg, #00B960 0%, #00552C 100%);
 	color: #fff;
 
 }
@@ -446,21 +459,31 @@ body {
 	font-weight:700;
 }
 
-/* login form */
+/* login & signup form  */
 .login-container {
 	/* width: 50rem; */
 	height: 50rem;
 	margin: 0 auto;
 	background-color: #f7f7f7;
-	box-shadow: 0 5px 5px rgb(0 0 0 / 25%), 0 7px 7px rgb(0 0 0 / 22%);
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	/* box-shadow: 0 5px 5px rgb(0 0 0 / 25%), 0 7px 7px rgb(0 0 0 / 22%); */
 	/* box-shadow: 0 1px 2px rgb(0 0 0 / 15%); */
 	border-radius: 5px;
+
 }
 
-.login-form {
+.login-form, 
+.signup-form{
 	padding: 6rem;
 	text-align: center;
 }
+/* .login-form {
+	text-align: center;
+}
+
+.signup-form {
+	text-align: left;
+} */
 
 .form-title {
 	font-size: 2rem;
@@ -514,8 +537,139 @@ body {
 } */
 
 .form-control {
-	font-size: 1.4rem;
+	font-size: 1.25rem;
 }
+
+.signup-form .form-group:first-child {
+	display: flex;
+}
+
+.signup-form .form-group:first-child .form-control:first-child {
+	margin-right: 10px;
+}
+
+
+
+/** user profile styles **/
+.profile-section {
+	margin-top: 5rem;
+}
+.profile {
+    /* background-color: rgba(255, 255, 255, 0.8); */
+    /* font-size: 18px; */
+    padding: 25px;
+    /* text-align: center; */
+    border-radius: 8px;
+    border: 1.2px solid #eee;
+    background-color: #fff;
+    box-shadow: rgb(50 50 105 / 15%) 0px 2px 5px 0px, rgb(0 0 0 / 5%) 0px 1px 1px 0px;
+}
+
+.card-top {
+	margin-bottom: 5px;
+}
+.card-heading {
+	font-size: 1.8rem;
+	font-weight: 700;
+	text-align: left;
+	float: left;
+}
+
+.card-icons {
+	float: right;
+	font-size: 1.8rem;
+}
+
+.author-img-box {
+	margin-bottom: 6px;
+}
+
+.author-img-box img {
+	width: 60%;
+	border-radius: 50%;
+}
+
+.author-info {
+	text-align: left;
+}
+
+.author-info .author-name {
+	font-weight: 700;
+	font-size: 1.3rem;
+}
+
+.social-media-info .fa-brands {
+	font-size: 2rem;
+	padding: 12px;
+}
+
+
+.social-link:hover {
+	text-decoration: none
+}
+
+.social-media-info .fa-linkedin-in {
+	color: #007bb6;
+}
+
+.social-media-info .fa-twitter {
+	color: #00aced;
+}
+
+.social-media-info .fa-instagram {
+	    /* color: #517fa4; */
+		background: #d6249f;
+		background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+}
+
+
+.book-info,
+.article-info {
+	display: flex;
+	/* border-bottom: 1.5px solid #eee;
+	 */
+
+	 padding-bottom: 1rem;
+}
+
+/* .book-info::before {
+	border-bottom: 1.5px solid #eee;
+} */
+
+.book-cover-photo,
+.article-cover-photo {
+	width: 10%;
+	font-size: 4rem;
+	margin-right: 8px;
+}
+
+.book-cover-photo .fa-book,
+.article-cover-photo .fa-newspaper {
+	width: 100%
+}
+
+.book-description,
+.article-description {
+	width: 90%;
+}
+
+.book-description:not(:last-child) {
+	border-bottom: 1px solid #eee;
+}
+
+.article-description:not(:last-child){
+	border-bottom: 1px solid #eee;
+}
+
+/* .short-text {
+	border-bottom: 1px solid #eee;
+	padding-bottom: 1rem;
+} */
+
+
+
 
 
 
