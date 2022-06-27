@@ -1,6 +1,7 @@
 require("dotenv").config(); 
 
 const express = require("express");
+const engine = require("ejs-mate");
 const session = require("express-session");
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
@@ -12,7 +13,8 @@ const User = require("./models/user/user");
 
 // require routes
 const indexRoutes = require("./routes/index");
-const authRoutes = require("./routes/auth/auth");
+const bookRoutes = require("./routes/book");
+const articleRoutes = require("./routes/article");
 
 const app = express();
 
@@ -28,10 +30,14 @@ db.once('open', () => {
     console.log('connection successfull!!!!!');
 });
 
-
-// app.engine("ejs", engine);
+// use ejs-locals for all ejs templates:
+app.engine("ejs", engine);
+// vjiew engine setup
+app.set('views',(__dirname + "/views"));
 app.set("view engine", "ejs");
-// app.set('views',(__dirname + '/views'));
+//set public assests directory
+app.use(express.static("public"));
+
 app.use(express.static(__dirname + "/public"));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -45,41 +51,45 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use(new GoogleStrategy({
-    clientID: authConfig.googleAuth.clientID,
-    clientSecret: authConfig.googleAuth.clientSecret,
-    callbackURL: authConfig.googleAuth.callbackURL
-},
-function(accessToken, refreshToken, profile, done){
-    console.log(profile);
-   
-    process.nextTick(function(){
-        User.findOne({'googleUser.id': profile.id}, function(err, user){
-            if(err){
-                console.log(`googleAuth ${err}`);
-                return done(err)
-            }
-            if(user){
-                return done(null, user);
-            }else {
-                const newUser = new User();
-                newUser.googleUser.id = profile.id;
-                newUser.googleUser.token = accessToken;
-                newUser.googleUser.email = profile.emails[0].value;
-                newUser.googleUser.fullName = profile.displayName;
-                newUser.googleUser.firstName = profile.name.givenName;
-                newUser.googleUser.lastName = profile.name.familyName;
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
-                newUser.save(function(err) {
-                    if(err) throw err;
-                    return done(null, newUser);
-                });
-                console.log(profile);
-            }
-        })
-    })
+// passport.use(new GoogleStrategy({
+//     clientID: authConfig.googleAuth.clientID,
+//     clientSecret: authConfig.googleAuth.clientSecret,
+//     callbackURL: authConfig.googleAuth.callbackURL
+// },
+// function(accessToken, refreshToken, profile, done){
+//     console.log(profile);
+   
+//     process.nextTick(function(){
+//         User.findOne({'googleUser.id': profile.id}, function(err, user){
+//             if(err){
+//                 console.log(`googleAuth ${err}`);
+//                 return done(err)
+//             }
+//             if(user){
+//                 return done(null, user);
+//             }else {
+//                 const newUser = new User();
+//                 newUser.googleUser.id = profile.id;
+//                 newUser.googleUser.token = accessToken;
+//                 newUser.googleUser.email = profile.emails[0].value;
+//                 newUser.googleUser.fullName = profile.displayName;
+//                 newUser.googleUser.firstName = profile.name.givenName;
+//                 newUser.googleUser.lastName = profile.name.familyName;
+
+//                 newUser.save(function(err) {
+//                     if(err) throw err;
+//                     return done(null, newUser);
+//                 });
+//                 console.log(profile);
+//             }
+//         })
+//     })
     // return done(null, profile);
-}));
+// }));
 
 // passport.use(new YahooStrategy({
 //     consumerKey: authConfig.yahooAuth.consumerKey,
@@ -98,8 +108,13 @@ passport.deserializeUser((obj, done) => {
     done(null, obj);
 });
 
+// set local variables middleware
 app.use((req, res, next) => {
+    console.log("User making requests ====>>>>>>> ", req.user);
     res.locals.currentUser = req.user;
+    console.log("current User ======>>>>>> ", res.locals.currentUser);
+    
+    res.locals.title = 'SprinNG';
     //set success flash message 
     res.locals.success = req.session.success || '';
     delete req.session.success;
@@ -110,7 +125,19 @@ app.use((req, res, next) => {
 });
 
 
-//error Handling
+// mount routes
+app.use('/', indexRoutes);
+app.use('/author/book', bookRoutes);
+app.use('/author/article', articleRoutes);
+
+// catch 404 and forward to error handler 
+app.use(function(req, res, next) {
+    const err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+});
+
+// //error Handling
 app.use((err, req, res, next) => {
     console.log(err); // print err message;
     
@@ -121,12 +148,8 @@ app.use((err, req, res, next) => {
     //render error page
     res.status(err.status || 500);
     res.status(err.status).send(err.message);
-    res.send(err);
+    res.render('error');
 });
-
-
-app.use(indexRoutes);
-app.use(authRoutes);
 
 
 module.exports = app;

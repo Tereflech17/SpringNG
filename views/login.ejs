@@ -1,6 +1,6 @@
 <%- include ("./partials/header") %>
 <div class="container u-mt-big">
-    <div class="login-container">
+    <div class="form-container">
         <div class="row">
             <div class="col-md-6">
                 <div class="login-form">
@@ -18,12 +18,12 @@
                         </div>
                      
                         <div class="hr-divider">OR</div>
-                    <form action="">
+                    <form action="/login" method="POST">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Email">
+                            <input type="email" class="form-control" placeholder="Email" name="username">
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Password">
+                            <input type="password" class="form-control" placeholder="Password" name="password">
                         </div>
                         <div class="c-text u-mt-sm">
                             <button class="btn btn-w btn-dark-green-2">Log In</button>

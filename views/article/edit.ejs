@@ -1,0 +1,26 @@
+<%- include ("../partials/header") %>
+<div class="container u-mt-big">
+    <form action="/author/article/details/<%= article.id %>?_method=PUT" method="POST">
+        <div class="form-card" data-step>
+            <h3 class="title">Edit Article </h3>
+            <div class="form-group">
+              <input type="text" name="article[articleTitle]" class="form-control" placeholder="Title" value="<%= article.articleTitle %>">
+            </div>
+            <div class="form-group">
+              <input type="text" name="artile[publishingYear]" class="form-control" placeholder="Year of Publication" value="<%= article.publishingYear %>">
+            </div>
+            <div class="form-group">
+              <textarea name="article[articleDescription]" id="" cols="30" rows="10" class="form-control" placeholder="Description"><%= article.articleDescription %></textarea>
+            </div>
+           
+            <div class="form-btn">
+              <button type="submit">Save</button>
+            </div>
+          </div>
+    </form>
+    <form action="/author/article/details/<%= article.id %>?_method=DELETE" method="POST">
+        <div class="form-btn">
+            <button type="submit">Delete article</button>
+          </div>
+    </form>
+</div>
