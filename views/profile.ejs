@@ -1,0 +1,116 @@
+<%- include ("./partials/header") %>
+<div class="container">
+    <div class="profile-section">
+        <div class="row">
+            <div class="col-md-3">
+                <% authorProfile.forEach(function(profile){ %>
+                <div class="profile">
+                    <div class="author-img-box c-text">
+                        <i class="fa-solid fa-user avatar"></i>
+                        <!-- <span><%= currentUser.firstName.charAt(0).toUpperCase();%><%= currentUser.lastName.charAt(0).toUpperCase();%></span> -->
+                        <!-- <img src="/img/shoola.jpg"> -->
+                    </div>
+                    <div class="">
+                        <a href="">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                    </div>
+                
+                    <div class="author-info">
+                        <h4 class="author-name"><%= currentUser.firstName %> <%= currentUser.lastName %></h4>
+                        <p class="location u-mb-0"><%= profile.location %>, West Africa</p>
+                        <p class="personal-site"><a class="site-link" href="<%= profile.website %>" target="_blank"><%= currentUser.firstName %>'s website</a></p>
+                        <p class="quote">"If you don't have time to read, you don't have the time (or the tools) to write. Simple as that."</p>
+                    </div>
+                    <div class="social-media-info c-text">
+                        <a href="" class="social-link">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+                        <a href="" class="social-link">
+                            <i class="fa-brands fa-twitter"></i>
+                        </a>
+                        <a href="" class="social-link">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                      
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="profile u-mb">
+                    <div class="card-top">
+                        <h4 class="card-heading">Biography</h4>
+                        <div class="card-icons">
+                            <a href="/author/myprofile/<%= profile._id %>/edit">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                        
+                        </div> 
+                    </div>
+                   <div class="biography-text">
+                       <%= profile.biography %>
+                    </div>
+                </div>
+                   
+                <div class="profile u-mb">
+                    <div class="card-top">
+                        <h4 class="card-heading">Books</h4>
+                        <div class="card-icons">
+                            <a href="/author/book/new">
+                                <i class="fa-solid fa-plus pad-right-min "></i>
+                            </a>
+                            <a href="/author/book/details">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a> 
+                        </div>
+                    </div>
+                    <div class="books">
+                        <% profile.books.forEach(function(book){ %>
+                            <div class="book-info">
+                                <div class="book-cover-photo">
+                                    <i class="fa-solid fa-book"></i>
+                                </div>
+                                <div class="book-description">
+                                    <h5 class="title"><%= book.bookTitle %></h5>
+                                    <h6 class="sub-title"><%= book.category %></h6>
+                                    <p class="short-text"><%= book.bookDescription %></p>
+                                </div>
+                            </div>
+                        <%}) %>
+                        </div> 
+                    </div>
+            
+
+                <div class="profile">
+                    <div class="card-top">
+                        <h4 class="card-heading">Articles & Publications</h4>
+                        <div class="card-icons">
+                            <a href="/author/article/new">
+                                <i class="fa-solid fa-plus pad-right-min"></i>
+                            </a>
+                            <a href="/author/article/details">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                        </div>
+                    </div>
+                   
+                    <div class="articles">
+                        <% profile.articles.forEach(function(article) { %>
+                            <div class="article-info">
+                                <div class="article-cover-photo">
+                                    <i class="fa-solid fa-newspaper"></i>
+                                </div>
+                                <div class="article-description">
+                                    <h5 class="title"><%= article.articleTitle %></h5>
+                                    <p class="pub-year">Pulication Year <%= article.publishingYear %></p>
+                                    <p class="short-text"><%= article.articleDescription %></p>
+                                </div>
+                            </div>
+                        <%})%>
+                    </div>
+                </div>
+            </div>
+            <%}) %>
+        </div>
+    </div>
+</div>

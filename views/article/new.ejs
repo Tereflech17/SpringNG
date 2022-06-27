@@ -1,0 +1,23 @@
+<%- include ("../partials/header") %>
+<div class="container u-mt-big">
+    <form action="/author/article/" method="POST">
+        <div class="form-card" data-step>
+            <h3 class="title">Add Article Publication</h3>
+            <div class="form-group">
+              <input type="text" name="article[articleTitle]" class="form-control" placeholder="Title">
+            </div>
+            <div class="form-group">
+              <input type="text" name="article[publishingYear]" class="form-control" placeholder="Publication Year">
+            </div>
+            <div class="form-group">
+              <textarea name="article[articleDescription]" id="" cols="30" rows="10" class="form-control" placeholder="Description"></textarea>
+            </div>
+           
+            <div class="form-btn">
+              <button type="submit" data-previous>Save</button>
+            </div>
+          
+          </div>
+    </form>
+</div>
+
