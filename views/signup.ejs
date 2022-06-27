@@ -1,0 +1,48 @@
+<%- include ("./partials/header") %>
+<div class="container u-mt-big">
+    <div class="form-container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="img-box">
+                    <!-- <p class="c-text">image to be place here!!!!</p> -->
+                    <img src="./img/image1.jpg" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="signup-form">
+                    <h5 class="form-title u-mb">Sign Up to SprinNG</h5>
+                    
+                        <div class="form-login-icons">
+                            <div class="google-icon-box">
+                                <a href="/auth/google">
+                                    <i class="fa-brands fa-google"></i>
+                                </a>
+                            </div>
+                        <div class="yahoo-icon-box">
+                            <i class="fa-brands fa-yahoo"></i>
+                        </div>
+                        </div>
+                     
+                        <div class="hr-divider">OR</div>
+                    <form action="/signup" method="POST" class="u-mb-lg">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="firstname" placeholder="First Name" value="<%= firstname %>" >
+                            <input type="text" class="form-control" name="lastname" placeholder="Last Name" value="<%= lastname %>" >
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Email" name="username">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Password" name="password">
+                        </div>
+                        <div class="c-text u-mt-sm">
+                            <button class="btn btn-w btn-dark-green-2">Sign Up</button>
+                        </div> 
+                    </form> 
+                    <p class="lt-text">Have an account? <a  href="/login">Log in here</a></p>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

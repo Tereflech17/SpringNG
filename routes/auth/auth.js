@@ -4,13 +4,13 @@ const passport= require('passport');
 const { getGoogleLogin, postGoogleLogin } = require('../../controllers/auth')
 
 
-
 router.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
 
 router.get('/auth/google/callback', passport.authenticate('google', {
     failureRedirect: '/auth/google'
 }), (req, res) => {
-    res.redirect("/welcome");
+    console.log("req", req.user);
+    res.render('new');
 });
 
 router.get('/auth/yahoo', passport.authenticate('yahoo', {}));

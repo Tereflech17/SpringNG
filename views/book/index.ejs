@@ -1,0 +1,30 @@
+<%- include ("../partials/header") %>
+<div class="container">
+    <div class="profile u-mb">
+        <div class="card-top">
+            <h4 class="card-heading">Books</h4>
+            <div class="card-icons">
+                <a href="/author/book/new">
+                    <i class="fa-solid fa-plus fa-size-lg fa-weight-light pad-right-min "></i>
+                </a>
+            </div>
+        </div>
+        <div class="books">
+            <% books.forEach(function(book){ %>
+                <div class="book-info">
+                    <div class="book-cover-photo">
+                        <i class="fa-solid fa-book"></i>
+                    </div>
+                    <div class="book-description">
+                        <h5 class="title"><%= book.bookTitle %></h5>
+                        <p class="sub-title"><%= book.category %></p>
+                        <p class="short-text"><%= book.bookDescription %></p> 
+                    </div>
+                    <a href="/author/book/details/<%= book._id %>/edit">
+                        <i class="fa-solid fa-pen-to-square fa-size-sm fa-weight-light"></i>
+                    </a>
+                </div>
+            <%}) %>
+            </div> 
+        </div>
+</div>

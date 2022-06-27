@@ -1,0 +1,100 @@
+<%- include ("./partials/header") %>
+<div class="container u-mt-big">
+   <div class="my-container">
+    <div class="step-indicator-arrow">
+      <div id="progress"></div>
+      <div class="step-col">Step I</div>
+      <div class="step-col">Step II</div>
+      <div class="step-col">Step III</div>
+      <div class="step-col">Step IV</div>
+  </div>
+    <form data-multi-step class="multi-step-form" actiom="/welcome" method="POST">
+        <div class="card" data-step>
+          <h3 class="step-title">Personal Information</h3>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+                <!-- <label for="email">Email</label> -->
+                <input type="text" name="" class="form-control" placeholder="First Name" value="<%= currentUser.firstName %>">
+              </div>
+              <div class="form-group col-md-6">
+                <input type="text" name="" class="form-control" placeholder="Last Name" value="<%= currentUser.lastName %>">
+              </div>
+          </div>
+         <div class="form-row">
+            <div class="form-group col-md-6">
+                <input type="text" name="userInfo[location]" class="form-control" placeholder="Location">
+              </div>
+              <div class="form-group col-md-6">
+                <input type="text" name="userInfo[website]" class="form-control" placeholder="Personal/Blog Link">
+              </div>
+         </div>
+         
+          <div class="form-group">
+              <textarea name="userInfo[biography]" class="form-control" id="" cols="30" rows="10" class="form-control" placeholder="Biography"></textarea>
+          </div>
+          <div class="form-btn">
+            <button type="button" data-next>Next</button>
+          </div>
+     
+        </div>
+        <div class="card" data-step>
+          <h3 class="step-title">Published Books</h3>
+          <div class="form-group">
+            <input type="text" name="bookInfo[bookTitle]" class="form-control" placeholder="Title">
+          </div>
+          <div class="form-group">
+            <input type="text" name="bookInfo[category]" class="form-control" placeholder="Category">
+          </div>
+          <div class="form-group">
+            <textarea name="bookInfo[bookDescription]" id="" cols="30" rows="10" class="form-control" placeholder="Description"></textarea>
+          </div>
+         
+          <div class="form-btn">
+            <button type="button" data-previous>Previous</button>
+            <button type="button" data-next>Next</button>
+          </div>
+        
+        </div>
+        <div class="card" data-step>
+          <h3 class="step-title">Published Articles</h3>
+            <div class="form-group">
+                <input type="text" name="articleInfo[articleTitle]" class="form-control" placeholder="Title">
+            </div>
+            <div class="form-group">
+                <input type="text" name="articleInfo[publishingYear]" class="form-control" placeholder="Year of publication">
+            </div>
+            <div class="form-group">
+                <textarea name="articleInfo[articleDescription]" id="" cols="30" rows="10" class="form-control" placeholder="Description"></textarea>
+            </div>
+          <div class="form-btn">
+            <button type="button" data-previous>Previous</button>
+            <button type="button" data-next>Next</button>
+          </div>
+          
+        </div>
+
+        <div class="card" data-step>
+          <h3 class="step-title">Social Links</h3>
+            <div class="form-group">
+                <input type="text" name="" class="form-control" placeholder="LinkeIn URL">
+            </div>
+            <div class="form-group">
+                <input type="text" name="" class="form-control" placeholder="Twitter URL">
+            </div>
+            <div class="form-group">
+              <input type="text" name="" class="form-control" placeholder="Instagram URL">
+            </div>
+          <div class="form-btn">
+            <button type="button" data-previous>Previous</button>
+            <button type="submit">Submit</button>
+          </div>
+          
+        </div>
+     
+      </form>
+  
+   </div>
+</div>
+
+
+Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit corrupti inventore sit consectetur voluptatum vitae. Aliquam veritatis quis esse natus consequatur animi officia nulla voluptate? Expedita tempore fugit alias perspiciatis?
