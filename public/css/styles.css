@@ -8,7 +8,11 @@
 
 /* html {
 	font-size: 62.5%; } */
-  
+
+
+a {
+	color: #777;
+}
 
 body {
 	box-sizing: border-box;
@@ -20,7 +24,7 @@ body {
     font-family: 'quicksand', sans-serif;
     font-weight: 400;
     color: #777;
-	padding: 30px;
+	/* padding: 30px; */
 }
 
 /* color styles for text */
@@ -67,6 +71,10 @@ body {
 
 .u-mt-big {
   margin-top: 50px;
+}
+
+.u-mt-rm {
+	margin-top: 10rem
 }
 /* .hr-left-divider,
 .hr-right-divider,
@@ -153,14 +161,15 @@ body {
 button component styles 
 =========================
 */ 
-.btn, .btn:link, .btn:visited {
+.my-btn, .my-btn:link, .my-btn:visited {
 	text-decoration: none;
 	padding: 0.8rem 1rem;
 	display: inline-block;
 	-webkit-transition: all .2s;
 	transition: all .2s;
 	position: relative;
-	font-size: 1.4rem;
+	font-size: 1.1rem;
+	font-weight: 600;
 	border: 1px solid transparent;
 	cursor: pointer;
 }
@@ -251,9 +260,14 @@ button component styles
 navigation styles 
 ===================
 **/
+.navbar {
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
 .navbar-center {
 	text-align: center;
 }
+
 
 .dropdown .nav-item .nav-link h6 {
     letter-spacing: -0.4px;
@@ -275,6 +289,25 @@ navigation styles
 .dropdown .nav-item {
    margin-bottom: 20px;
 }
+.dropdown-menu {
+	top: 51px;
+	left: -250px;
+	padding: 0.5rem 6rem 0.5rem 0.5rem;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	color: #777;
+}
+
+.username {
+	font-weight: 300;
+}
+
+.dropdown-title {
+	text-transform: uppercase;
+	font-weight: 300;
+	letter-spacing: 1px;
+	font-size: .6rem;
+	margin-top: 8px;
+}
 
 
 .navbar-nav .has-dropdown:hover .dropdown {
@@ -287,13 +320,51 @@ navigation styles
    margin-bottom: 0;
 }
 
+/** nav user icon **/
+
+.nav-item-user {
+	display: flex;
+	margin-right: 20px;
+}
+
+.user-avatar {
+	background-color: #777;
+	border-radius: 50%;
+	margin-right: 10px;
+}
+
+.user-avatar-initials a {
+	color: #fff !important;
+}
+
+/** nav form search button **/
+.btn-outline-success {
+	color: #00552C;
+	border-color: #00552C;
+}
+
+.btn-outline-success:hover {
+	background-color: #00552C;
+	border-color: #00552C;
+}
+
+
+
 /**
 =================== 
 Flash messages styles
 ===================
 **/
+.flash-message {
+	position: relative;
+}
+
 .message-container {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
 	padding: 2px;
+
 }
 
 
@@ -304,7 +375,7 @@ hero header styles
 ===================
 */
 .hero {
-	padding-bottom: 80px;
+	padding-bottom: 0px;
 	background-image:  url(../img/hero-bg.png);
 	background-size: cover;
 	background-position: center;
@@ -360,25 +431,29 @@ hero header styles
 }
 
 .hero-content h1 {
-	font-size: 65px;
+	font-size: 5.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: .5px;
+	/* font-size: 65px;
 	font-weight: 400;
 	letter-spacing: -3.11px;
-	line-height: 76px;
+	line-height: 76px; */
 	margin-bottom: 15px;
     /* color: #fff; */
 }
 
 @media only screen and (min-width: 768px) {
 	.hero-content h1 {
-		font-size: 50px;
-		line-height: 55px;
+		font-size: 4.5rem;
+		line-height: .5;
 	}
 } 
 
  @media only screen and (min-width: 992px){
 	.hero-content h1 {
-		font-size: 65px; 
-		line-height: 76px;
+		font-size: 5.5rem; 
+		line-height: 1.1;
 	}
 } 
 
@@ -428,6 +503,18 @@ hero header styles
 	padding-top: 12px;
 	
 }
+
+.hero-image  {
+	display: flex;
+}
+
+.hero .male-figure {
+	position: relative;
+	left: -6rem;
+	bottom: -35px;
+	transform: scale(1.5);
+}
+
 
 
 
@@ -479,6 +566,10 @@ hero header styles
 .section-about, 
 .section-team {
 	padding: 220px 0;
+}
+
+.section-about {
+	padding-top: 18rem;
 }
 
 /** 
@@ -540,6 +631,7 @@ About: section styles
 	/* box-shadow: 0 1px 2px rgb(0 0 0 / 15%); */
 	border-radius: 5px;
 	overflow: hidden;
+	margin-top: 8rem;
 
 }
 
@@ -746,7 +838,7 @@ About: section styles
 
 /** user profile styles **/
 .profile-section {
-	margin-top: 5rem;
+	/* margin-top: 5rem; */
 }
 .profile {
     /* background-color: rgba(255, 255, 255, 0.8); */
