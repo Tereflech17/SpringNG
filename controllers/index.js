@@ -172,7 +172,7 @@ module.exports = {
     },
 
     getForgotPw(req, res, next){
-        res.render(); 
+        res.render('users/forgot'); 
     },
 
     async putForgotPw(req, res, next){
@@ -189,11 +189,11 @@ module.exports = {
 
         const msg = {
             to: email,
-            from: 'SprinNG <your@email.com>',
+            from: 'SprinNG <contact@sprinng.org>',
             subject: 'SprinNG - Forgot Password / Reset',
             text: `You are receiving this because you (or someone else) have requested the reset of the password for your account. Please click on the following link, or copy and paste it into your browser to complete the process:
             http://${req.headers.host}/reset/${token}
-            if you did not request this, please ignore this email and your password will remain unchanged.`.replace(/       /g, ''),
+            if you did not request this, please ignore this email and your password will remain unchanged.`.replace(/            /g, ''),
         };
         await sgMail.send(msg);
 
@@ -202,7 +202,55 @@ module.exports = {
     },
 
     async getReset(req, res, next){
+        const { token } = req.params;
+        const user = await User.findOne({ 
+            resetPasswordToken: token,
+            resetPasswordExpires: { $gt: Date.now() }
+        });
+
+        if (!user) {
+            req.session.error = 'Password reset token is invalid or has expired';
+            return res.redirect('/forgot/password');
+        }
+
+        res.render('users/reset', { token })
+    },
+    async putReset(req, res, next){
+        const { token } = req.params;
+        const user = await User.findOne({ 
+            resetPasswordToken: token,
+            resetPasswordExpires: { $gt: Date.now() }
+        });
+
+        if (!user) {
+            req.session.error = 'Password reset token is invalid or has expired';
+            return res.redirect('/forgot/password');
+        }
         
+        if (req.body.password === req.body.confirm-password) {
+            await user.setPassword(req.body.password);
+            user.resetPasswordToken = null;
+            user.resetPasswordExpires = null;
+            await user.save();
+            const login = util.promisify(req.login.bind(req));
+            await login(user);
+        }else {
+            req.session.error = 'Passwords do not match.';
+            return res.redirect(`/reset/${ token }`);
+        }
+
+        const msg = {
+            to: user.email,
+            from: 'SprinNG Admin <contact@sprinng.org>',
+            subject: 'SprinNG - Password Reset',
+            text: `Hello, 
+            This email is to confirm that the password for your account has just been changed.
+            If you did not make this change, please hit reply and notify us at once.`.replace(/            /g,'')
+        };
+
+        await sgMail.send(msg);
+        req.session.success = 'Password has been successfully updated!';
+        res.redirect('/author/myprofile');
     }
    
 }
