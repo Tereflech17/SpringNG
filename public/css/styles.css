@@ -24,6 +24,8 @@ body {
     font-family: 'quicksand', sans-serif;
     font-weight: 400;
     color: #777;
+	line-height: 1.625;
+
 	/* padding: 30px; */
 }
 
@@ -120,6 +122,12 @@ body {
     letter-spacing:2px;
 }
 
+.text-highlight {
+	font-style: italic;
+	color: #075c31;
+	font-weight: 700;
+}
+
 
 /**
 ==================
@@ -137,6 +145,10 @@ body {
 
  .fa-weight-light {
 	 font-weight: 300;
+ }
+
+ .fa-plus {
+	font-size: 2.5rem;
  }
 
 
@@ -187,17 +199,17 @@ button component styles
 
 .btn:hover { 
 	color: #fff;
-	/* -webkit-transform: translateY(-3px);
+	-webkit-transform: translateY(-3px);
 			transform: translateY(-3px);
 	-webkit-box-shadow: 0 1rem 2rem rbga(0, 0, 0, 0.2);
-			box-shadow:  0 1rem 2rem rbga(0, 0, 0, 0.2); */
+			box-shadow:  0 1rem 2rem rbga(0, 0, 0, 0.2);
 }
 
-/* .btn:hover::after {
+.btn:hover::after {
 	-webkit-transform: scaleX(1.4) scaleY(1.6);
 	transform: scaleX(1.4) scaleY(1.6);
 	opacity: 0;
-} */
+}
 
 .btn:active, .btn:focus {
     outline: none;
@@ -251,6 +263,19 @@ button component styles
 	box-shadow: 0 10px 20px rgba(0 0 0 / 15%);
 	transform: translateY(-2px);
 	
+}
+
+.btn-pos {
+	position: relative;	
+}
+
+.btn-green-pos {
+    right: -31rem;
+}
+
+.btn-danger-pos {
+    left: -29.6rem;
+    top: -69px;
 }
 
 
@@ -331,10 +356,15 @@ navigation styles
 	background-color: #777;
 	border-radius: 50%;
 	margin-right: 10px;
+	height: 2rem;
+    margin-top: 0.3rem;
 }
 
 .user-avatar-initials a {
 	color: #fff !important;
+	transform: translate(0px, -2px);
+    font-size: .8rem;
+
 }
 
 /** nav form search button **/
@@ -366,6 +396,14 @@ Flash messages styles
 	padding: 2px;
 
 }
+
+/**
+=================== 
+Modal popup styles
+===================
+**/
+
+
 
 
 
@@ -601,7 +639,7 @@ About: section styles
 }
 
 .feature-box-photo img {
-	width: 65%;
+	width: 50%;
 	border-radius: 50%;
 }
 
@@ -780,13 +818,13 @@ About: section styles
 
 
 
-.form-btn {
+ .form-btn {
 	width: 100%;
 	margin: 30px auto;
 	text-align: center;
 }
 
-.form-btn button {
+/* .form-btn button {
 	width: 110px;
 	height: 35px;
 	margin: 0 10px;
@@ -795,7 +833,7 @@ About: section styles
 	border: 0;
 	color: #fff;
 	cursor: pointer;
-}
+}  */
 
 
 .step-indicator-arrow {
@@ -957,10 +995,16 @@ About: section styles
 	width: 100%
 }
 
-.title {
+.profile-card-title {
 	font-weight: 700;
     font-size: 1.3rem;
 	margin-bottom: 0;
+}
+
+.edit-card-title {
+	font-weight: 700;
+    font-size: 1.8rem;
+	margin-bottom: 2rem;
 }
 
 .sub-title,

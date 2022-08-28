@@ -16,7 +16,9 @@ const UserSchema = new mongoose.Schema({
     },
     yahooUser: {
         
-    }
+    },
+    resetPasswordToken: String,
+    resetPasswordExpires: Date
 });
 
 UserSchema.plugin(passportLocalMongoose);

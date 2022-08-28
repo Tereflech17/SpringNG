@@ -1,13 +1,13 @@
 <%- include ("./partials/header") %>
-<div class="container u-mt-big">
+<div class="container u-mt-rm">
    <div class="my-container">
-    <div class="step-indicator-arrow">
+    <!-- <div class="step-indicator-arrow">
       <div id="progress"></div>
       <div class="step-col">Step I</div>
       <div class="step-col">Step II</div>
       <div class="step-col">Step III</div>
       <div class="step-col">Step IV</div>
-  </div>
+  </div> -->
     <form data-multi-step class="multi-step-form" actiom="/welcome" method="POST">
         <div class="card" data-step>
           <h3 class="step-title">Personal Information</h3>
@@ -33,7 +33,7 @@
               <textarea name="userInfo[biography]" class="form-control" id="" cols="30" rows="10" class="form-control" placeholder="Biography"></textarea>
           </div>
           <div class="form-btn">
-            <button type="button" data-next>Next</button>
+            <button class="btn btn-dark-green-2" type="button" data-next>Next</button>
           </div>
      
         </div>
@@ -50,8 +50,8 @@
           </div>
          
           <div class="form-btn">
-            <button type="button" data-previous>Previous</button>
-            <button type="button" data-next>Next</button>
+            <button class="btn btn-dark-green-2" type="button" data-previous>Previous</button>
+            <button class="btn btn-dark-green-2" type="button" data-next>Next</button>
           </div>
         
         </div>
@@ -67,8 +67,8 @@
                 <textarea name="articleInfo[articleDescription]" id="" cols="30" rows="10" class="form-control" placeholder="Description"></textarea>
             </div>
           <div class="form-btn">
-            <button type="button" data-previous>Previous</button>
-            <button type="button" data-next>Next</button>
+            <button class="btn btn-dark-green-2" type="button" data-previous>Previous</button>
+            <button class="btn btn-dark-green-2" type="button" data-next>Next</button>
           </div>
           
         </div>
@@ -85,8 +85,8 @@
               <input type="text" name="" class="form-control" placeholder="Instagram URL">
             </div>
           <div class="form-btn">
-            <button type="button" data-previous>Previous</button>
-            <button type="submit">Submit</button>
+            <button class="btn btn-dark-green-2" type="button" data-previous>Previous</button>
+            <button class="btn btn-dark-green-2" type="submit">Submit</button>
           </div>
           
         </div>

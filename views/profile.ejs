@@ -12,7 +12,7 @@
                     </div>
                     <div class="">
                         <a href="">
-                            <i class="fa-solid fa-pen-to-square"></i>
+                            <i class="fa-solid fa-pen-to-square fa-weight-light"></i>
                         </a>
                     </div>
                 
@@ -42,7 +42,7 @@
                         <h4 class="card-heading">Biography</h4>
                         <div class="card-icons">
                             <a href="/author/myprofile/<%= profile._id %>/edit">
-                                <i class="fa-solid fa-pen-to-square"></i>
+                                <i class="fa-solid fa-pen-to-square fa-weight-light"></i>
                             </a>
                         
                         </div> 
@@ -57,10 +57,10 @@
                         <h4 class="card-heading">Books</h4>
                         <div class="card-icons">
                             <a href="/author/book/new">
-                                <i class="fa-solid fa-plus pad-right-min "></i>
+                                <i class="fa-solid fa-plus pad-right-min fa-weight-light"></i>
                             </a>
                             <a href="/author/book/details">
-                                <i class="fa-solid fa-pen-to-square"></i>
+                                <i class="fa-solid fa-pen-to-square fa-weight-light"></i>
                             </a> 
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                                     <i class="fa-solid fa-book"></i>
                                 </div>
                                 <div class="book-description">
-                                    <h5 class="title"><%= book.bookTitle %></h5>
+                                    <h5 class="profile-card-title"><%= book.bookTitle %></h5>
                                     <h6 class="sub-title"><%= book.category %></h6>
                                     <p class="short-text"><%= book.bookDescription %></p>
                                 </div>
@@ -86,10 +86,10 @@
                         <h4 class="card-heading">Articles & Publications</h4>
                         <div class="card-icons">
                             <a href="/author/article/new">
-                                <i class="fa-solid fa-plus pad-right-min"></i>
+                                <i class="fa-solid fa-plus pad-right-min fa-weight-light"></i>
                             </a>
                             <a href="/author/article/details">
-                                <i class="fa-solid fa-pen-to-square"></i>
+                                <i class="fa-solid fa-pen-to-square fa-weight-light"></i>
                             </a>
                         </div>
                     </div>
@@ -101,7 +101,7 @@
                                     <i class="fa-solid fa-newspaper"></i>
                                 </div>
                                 <div class="article-description">
-                                    <h5 class="title"><%= article.articleTitle %></h5>
+                                    <h5 class="profile-card-title"><%= article.articleTitle %></h5>
                                     <p class="pub-year">Pulication Year <%= article.publishingYear %></p>
                                     <p class="short-text"><%= article.articleDescription %></p>
                                 </div>
