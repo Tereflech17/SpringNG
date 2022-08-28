@@ -176,6 +176,7 @@ multiStepForm.addEventListener("click", e => {
     incrementor = 1
     progressBar.style.width = "42.5%";
     
+    
   } else if (e.target.matches("[data-previous]")) {
     incrementor = -1
     progressBar.style.width = "21.25%";

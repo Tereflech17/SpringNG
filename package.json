@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Tereflech17/SpringNG#readme",
   "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
     "chalk": "^5.0.0",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.0",

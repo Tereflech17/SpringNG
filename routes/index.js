@@ -35,7 +35,7 @@ router.get('/logout', getLogout)
 
 
 /* GET /welcome profile steup */ 
-router.get('/welcome', isLoggedIn, getWelcomeProfileForm);
+router.get('/welcome', getWelcomeProfileForm);
 
 /* POST /welcome */
 router.post('/welcome', asyncErrorHandler(postProfileInfoSetup));

@@ -3,6 +3,9 @@ const Author = require("../models/user/author");
 const Book = require("../models/book");
 const Article = require("../models/article");
 const passport = require('passport');
+const crypto = require('crypto');
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 
 module.exports = {
@@ -39,9 +42,9 @@ module.exports = {
             const { firstname, lastname, email } = req.body;
             let error = err.message;
             if(error.includes('duplicate') && error.includes('index: email_1 dup key')){
-                error = 'A user with the given email is already registered';
+                error = 'A user with the given username/email is already registered';
             }
-            res.render('signup', {title: 'Signup', firstname, lastname, email, error})
+            res.render('signup', {title: 'Signup', firstname, lastname, email, error: error})
         }
     },
 
@@ -68,6 +71,7 @@ module.exports = {
     // GET /logout 
     getLogout(req, res, next){
         req.logout();
+        req.session.success = 'Logged out successfully!'
         res.redirect('/');
     },
 
@@ -165,6 +169,40 @@ module.exports = {
         await User.findByIdAndUpdate(req.user.id, req.body.user);
         req.session.success = 'Profile updated successfully';
         res.redirect('/author/myprofile');
+    },
+
+    getForgotPw(req, res, next){
+        res.render(); 
+    },
+
+    async putForgotPw(req, res, next){
+        const token = await crypto.randomBytes(20).toString('hex');
+        const { email } = req.body;
+        const user = await User.findOne({ email  });
+        if(!user){
+            req.session.error = 'No account with that email was found!';
+            return res.redirect('/forgot-password')
+        }
+        user.resetPasswordToken = token;
+        user.resetPasswordExpires = Date.now() + 3600000;
+        await user.save();
+
+        const msg = {
+            to: email,
+            from: 'SprinNG <your@email.com>',
+            subject: 'SprinNG - Forgot Password / Reset',
+            text: `You are receiving this because you (or someone else) have requested the reset of the password for your account. Please click on the following link, or copy and paste it into your browser to complete the process:
+            http://${req.headers.host}/reset/${token}
+            if you did not request this, please ignore this email and your password will remain unchanged.`.replace(/       /g, ''),
+        };
+        await sgMail.send(msg);
+
+        req.session.success = `An email has been sent to ${email} with further instructions.`;
+        res.redirect('/forgot-password'); 
+    },
+
+    async getReset(req, res, next){
+        
     }
    
 }
