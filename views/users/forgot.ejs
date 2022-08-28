@@ -1,14 +1,14 @@
 <%- include ("../partials/header") %>
-<div class="container">
+<div class="container u-mt-rm">
     <div class="form-heading">
-        <h1 class="form-title">Forgot Password</h1>
+        <h1 class="form-title c-text u-mb-sm">Forgot Password</h1>
     </div>
-<form action="/forgot-password?_method=PUT" method="POST">
+<form action="/forgot-password?_method=PUT" method="POST" class="forget-form">
     <div class="form-group">
-        <input type="text" name="email" placeholder="email" class="form-control" autofocus>
+        <input type="text" name="email" placeholder="Email Address" class="form-control" autofocus>
     </div>
     <div class="form-group">
-        <button class="my-btn btn-w btn-dark-green-2">Reset Password</button>
+        <button type="submit" class="my-btn btn-w btn-dark-green-2">Reset Password</button>
     </div>
 </form>
 </div>

@@ -11,7 +11,11 @@ const { landingPage,
         getProfileTest, 
         getProfile,
         profileEdit,
-        profileUpdate } = require('../controllers/index');
+        profileUpdate,
+        getForgotPw,
+        putForgotPw,
+        getReset,
+        putReset } = require('../controllers/index');
 const { asyncErrorHandler, isLoggedIn } = require('../middleware/index');
 
 
@@ -49,6 +53,16 @@ router.get('/author/myprofile/:id/edit', isLoggedIn, asyncErrorHandler(profileEd
 
 router.put('/author/myprofile/:id', isLoggedIn, asyncErrorHandler(profileUpdate))
 
+/* GET /forgot */
+router.get('/forgot-password', getForgotPw);
 
+/* PUT /forgot */
+router.put('/forgot-password', asyncErrorHandler(putForgotPw));
+
+/* GET /reset/:token */
+router.get('/reset/:token', asyncErrorHandler(getReset));
+
+/* PUT /reset/:token */
+router.put('/reset/:token', asyncErrorHandler(putReset));
 
 module.exports = router;
