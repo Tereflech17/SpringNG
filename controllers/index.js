@@ -193,7 +193,7 @@ module.exports = {
             subject: 'SprinNG - Forgot Password / Reset',
             text: `You are receiving this because you (or someone else) have requested the reset of the password for your account. Please click on the following link, or copy and paste it into your browser to complete the process:
             http://${req.headers.host}/reset/${token}
-            if you did not request this, please ignore this email and your password will remain unchanged.`.replace(/            /g, ''),
+            if you did not request this, please ignore this email and your password will remain unchanged.`.replace(/            /g, '')
         };
         await sgMail.send(msg);
 
