@@ -10,6 +10,7 @@ const authConfig = require("./authconfig");
 const methodOverride = require("method-override");
 const mongoose = require("mongoose");
 const User = require("./models/user/user");
+let package = require("./package.json")
 
 // require routes
 const indexRoutes = require("./routes/index");
@@ -18,10 +19,18 @@ const articleRoutes = require("./routes/article");
 
 const app = express();
 
+
 //connect to the database
-mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.bpxhw.mongodb.net/${process.env.DATABASE}?retryWrites=true&w=majority`, {
-    useNewUrlParser: true, 
+//mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.bpxhw.mongodb.net/${process.env.DATABASE}?retryWrites=true&w=majority`, {
+    //useNewUrlParser: true, 
+    //useUnifiedTopology: true
+//});
+
+//connect to mongoDB locally
+mongoose.connect(`mongodb://localhost:27017/${process.env.DATABASE}`,{
+    useNewUrlParser:true,
     useUnifiedTopology: true
+
 });
 
 const db = mongoose.connection;
